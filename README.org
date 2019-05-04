@@ -20,6 +20,12 @@ To use this configuration layer, add it to your =~/.spacemacs=. You will need to
 add =scala-lsp= to the existing =dotspacemacs-configuration-layers= list in this
 file.
 
+#+BEGIN_SRC emacs-lsip
+(scala-lsp :location
+          (recipe :fetcher github
+                  :repo "zheli/layer-scala-lsp"))
+#+END_SRC
+
 * Key bindings
 
 | Key Binding | Description    |
