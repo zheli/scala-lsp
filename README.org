@@ -1,7 +1,7 @@
 TITLE: scala-lsp layer
 
 # The maximum height of the logo should be 200 pixels.
-[[img/scala-lsp.png]]
+[[file:img/scala.png]] with [[file:img/scalameta.png]]
 
 # TOC links should be GitHub style anchors.
 * Table of Contents                                        :TOC_4_gh:noexport:
@@ -18,23 +18,43 @@ This layer does wonderful things:
   - no dependency with ensime, using language server protocol(lsp) instead
 
 * Install
-To use this configuration layer, add it to your =~/.spacemacs=. You will need to
-add =scala-lsp= to the existing =dotspacemacs-configuration-layers= list in this
+First make sure you have the latest version of =metals-emacs=, as of 2019-05-04,
+the latest version can be built using the following commands:
+
+#+BEGIN_SRC bash
+# Make sure to use coursier v1.1.0-M9 or newer.
+curl -L -o coursier https://git.io/coursier
+chmod +x coursier
+./coursier bootstrap \
+  --java-opt -Xss4m \
+  --java-opt -Xms100m \
+  --java-opt -Dmetals.client=emacs \
+  org.scalameta:metals_2.12:0.5.1 \
+  -r bintray:scalacenter/releases \
+  -r sonatype:snapshots \
+  -o /usr/local/bin/metals-emacs -f
+#+END_SRC
+
+Now, to use this
+configuration layer, add it to your =~/.spacemacs=. You will need to add
+=scala-lsp= to the existing =dotspacemacs-configuration-layers= list in this
 file.
 
-#+BEGIN_SRC emacs-lsip
+#+BEGIN_SRC emacs-l
 (scala-lsp :location
           (recipe :fetcher github
                   :repo "zheli/layer-scala-lsp"))
 #+END_SRC
 
-* Key bindings
+I also recommend to add this settings into your Spacemacs config to enable auto completion.
 
-| Key Binding | Description    |
-|-------------+----------------|
-| ~SPC x x x~ | Does thing01   |
-# Use GitHub URLs if you wish to link a Spacemacs documentation file or its heading.
-# Examples:
-# [[https://github.com/syl20bnr/spacemacs/blob/master/doc/VIMUSERS.org#sessions]]
-# [[https://github.com/syl20bnr/spacemacs/blob/master/layers/%2Bfun/emoji/README.org][Link to Emoji layer README.org]]
-# If space-doc-mode is enabled, Spacemacs will open a local copy of the linked file.
+#+BEGIN_SRC emacs-lisp
+(setq company-lsp-async t)
+;; Hack to make sure 'company-lsp is only pushed after company package is loaded
+(use-package company
+ :config
+ (push 'company-lsp company-backends))
+#+END_SRC
+
+* Key bindings
+See http://develop.spacemacs.org/layers/+tools/lsp/README.html#key-bindings
