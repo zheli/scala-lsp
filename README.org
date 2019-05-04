@@ -10,7 +10,9 @@ TITLE: scala-lsp layer
 - [[#key-bindings][Key bindings]]
 
 * Description
-Scala layer for Spacemacs, using lsp instead of ensime.
+Scala layer for Spacemacs, using lsp instead of ensime, based on the original
+Scala layer and this pull request
+https://github.com/syl20bnr/spacemacs/pull/12234/files.
 
 This layer does wonderful things:
   - no dependency with ensime, using language server protocol(lsp) instead
