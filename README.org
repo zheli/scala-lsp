@@ -1,4 +1,6 @@
-TITLE: scala-lsp layer
+#+TITLE: scala-lsp layer
+
+#+TAGS: layer|tool
 
 # The maximum height of the logo should be 200 pixels.
 [[file:img/scala.png]] with [[file:img/scalameta.png]]
