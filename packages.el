@@ -12,12 +12,13 @@
 (defconst scala-lsp-packages
   '(
     (lsp-scala :require lsp-mode)
-    ggtags
     counsel-gtags
+    ggtags
     helm-gtags
+    lsp-ui
     noflet
-    scala-mode
     sbt-mode
+    scala-mode
     ))
 
 (defun scala-lsp/init-noflet ()
@@ -113,6 +114,9 @@ If it's part of a left arrow (`<-'),replace it with the unicode arrow."
               (lambda ()
                 (setq-local lsp-prefer-flymake nil)))
     :hook (scala-mode . lsp)))
+
+(defun scala-lsp/post-init-lsp-ui()
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
 (defun scala-lsp/post-init-ggtags ()
   (add-hook 'scala-mode-local-vars-hook #'spacemacs/ggtags-mode-enable))
