@@ -1,4 +1,4 @@
-#+TITLE: scala-lsp layer
+TITLE: scala-lsp layer
 
 # The maximum height of the logo should be 200 pixels.
 [[img/scala-lsp.png]]
@@ -10,8 +10,10 @@
 - [[#key-bindings][Key bindings]]
 
 * Description
+Scala layer for Spacemacs, using lsp instead of ensime.
+
 This layer does wonderful things:
-  - thing01
+  - no dependency with ensime, using language server protocol(lsp) instead
 
 * Install
 To use this configuration layer, add it to your =~/.spacemacs=. You will need to
