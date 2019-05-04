@@ -16,19 +16,12 @@
     counsel-gtags
     helm-gtags
     noflet
-    ;; package org requires org-babel which requires ob-scala which requires ensime
-    ;; org
     scala-mode
     sbt-mode
     ))
 
 (defun scala-lsp/init-noflet ()
   (use-package noflet))
-
-;; org-babel require ob-scala which requires ensime
-;; (defun scala-lsp/pre-init-org ()
-;;   (spacemacs|use-package-add-hook org
-;;     :post-config (add-to-list 'org-babel-load-languages '(scala . t))))
 
 (defun scala-lsp/init-sbt-mode ()
   (use-package sbt-mode
@@ -61,7 +54,7 @@
           (scala-indent:insert-asterisk-on-multiline-comment)))
 
       (evil-define-key 'insert scala-mode-map
-        (kbd "RET") 'scala/newline-and-indent-with-asterisk)
+        (kbd "RET") 'scala-lsp/newline-and-indent-with-asterisk)
 
       ;; Automatically replace arrows with unicode ones when enabled
       (defconst scala-unicode-arrows-alist
@@ -88,20 +81,20 @@ If it's part of a right arrow (`->' or `=>'),replace it with the corresponding
 unicode arrow."
         (interactive)
         (insert ">")
-        (scala/replace-arrow-at-point))
+        (scala-lsp/replace-arrow-at-point))
 
       (defun scala-lsp/hyphen ()
         "Insert a `-' to the buffer.
 If it's part of a left arrow (`<-'),replace it with the unicode arrow."
         (interactive)
         (insert "-")
-        (scala/replace-arrow-at-point))
+        (scala-lsp/replace-arrow-at-point))
 
       (when scala-use-unicode-arrows
         (define-key scala-mode-map
-          (kbd ">") 'scala/gt)
+          (kbd ">") 'scala-lsp/gt)
         (define-key scala-mode-map
-          (kbd "-") 'scala/hyphen))
+          (kbd "-") 'scala-lsp/hyphen))
 
       (evil-define-key 'normal scala-mode-map "J" 'spacemacs/scala-join-line)
 
@@ -119,7 +112,7 @@ If it's part of a left arrow (`<-'),replace it with the unicode arrow."
     (add-hook 'scala-mode
               (lambda ()
                 (setq-local lsp-prefer-flymake nil)))
-    :hook ((scala-mode) . lsp)))
+    :hook (scala-mode . lsp)))
 
 (defun scala-lsp/post-init-ggtags ()
   (add-hook 'scala-mode-local-vars-hook #'spacemacs/ggtags-mode-enable))
