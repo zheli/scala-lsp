@@ -17,7 +17,7 @@ Scala layer and this pull request
 https://github.com/syl20bnr/spacemacs/pull/12234/files.
 
 This layer does wonderful things:
-  - there is no dependency of ensime, instead we use Metals with language server protocl (lsp)
+  - there is no dependency of ensime, instead we use Metals with language server protocol (lsp)
 
 * Install
 First make sure you have the latest version of =metals-emacs=, as of 2019-05-04,
