@@ -20,21 +20,21 @@ This layer does wonderful things:
   - there is no dependency of ensime, instead we use Metals with language server protocol (lsp)
 
 * Install
-First make sure you have the latest version of =metals-emacs=, as of 2019-05-04,
+First make sure you have the latest version of =metals-emacs=, as of 2019-07-10,
 the latest version can be built using the following commands:
 
 #+BEGIN_SRC sh
-# Make sure to use coursier v1.1.0-M9 or newer.
-curl -L -o coursier https://git.io/coursier
-chmod +x coursier
-./coursier bootstrap \
-  --java-opt -Xss4m \
-  --java-opt -Xms100m \
-  --java-opt -Dmetals.client=emacs \
-  org.scalameta:metals_2.12:0.5.1 \
-  -r bintray:scalacenter/releases \
-  -r sonatype:snapshots \
-  -o /usr/local/bin/metals-emacs -f
+  # Make sure to use coursier v1.1.0-M9 or newer.
+  curl -L -o coursier https://git.io/coursier
+  chmod +x coursier
+  ./coursier bootstrap \
+    --java-opt -Xss4m \
+    --java-opt -Xms100m \
+    --java-opt -Dmetals.client=emacs \
+    org.scalameta:metals_2.12:0.7.0 \
+    -r bintray:scalacenter/releases \
+    -r sonatype:snapshots \
+    -o /usr/local/bin/metals-emacs -f
 #+END_SRC
 
 Now, you have to clone the repository in your `~/.emacs.d/private` folder, and
